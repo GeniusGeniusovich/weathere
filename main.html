@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Settings</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { 
+            font-family: Arial;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        button {
+            background: #0088cc;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>⚙️ Настройки</h2>
+        
+        <label>Выберите город:</label>
+        <select id="city">
+            <option value="Москва">Москва</option>
+            <option value="Санкт-Петербург">Санкт-Петербург</option>
+            <option value="Новосибирск">Новосибирск</option>
+            <option value="Екатеринбург">Екатеринбург</option>
+            <option value="Казань">Казань</option>
+            <option value="Нижний Новгород">Нижний Новгород</option>
+            <option value="Челябинск">Челябинск</option>
+            <option value="Самара">Самара</option>
+            <option value="Омск">Омск</option>
+            <option value="Ростов-на-Дону">Ростов-на-Дону</option>
+            <option value="Уфа">Уфа</option>
+            <option value="Красноярск">Красноярск</option>
+            <option value="Воронеж">Воронеж</option>
+            <option value="Пермь">Пермь</option>
+            <option value="Волгоград">Волгоград</option>
+            <option value="Краснодар">Краснодар</option>
+            <option value="Саратов">Саратов</option>
+            <option value="Тюмень">Тюмень</option>
+            <option value="Тольятти">Тольятти</option>
+            <option value="Ижевск">Ижевск</option>
+            <option value="Барнаул">Барнаул</option>
+            <option value="Ульяновск">Ульяновск</option>
+            <option value="Иркутск">Иркутск</option>
+            <option value="Хабаровск">Хабаровск</option>
+            <option value="Ярославль">Ярославль</option>
+            <option value="Владивосток">Владивосток</option>
+            <option value="Махачкала">Махачкала</option>
+            <option value="Томск">Томск</option>
+            <option value="Оренбург">Оренбург</option>
+            <option value="Кемерово">Кемерово</option>
+            <option value="Новокузнецк">Новокузнецк</option>
+            <option value="Рязань">Рязань</option>
+            <option value="Астрахань">Астрахань</option>
+            <option value="Набережные Челны">Набережные Челны</option>
+            <option value="Пенза">Пенза</option>
+            <option value="Липецк">Липецк</option>
+            <option value="Киров">Киров</option>
+            <option value="Чебоксары">Чебоксары</option>
+            <option value="Тула">Тула</option>
+            <option value="Калининград">Калининград</option>
+            <option value="Брянск">Брянск</option>
+            <option value="Курск">Курск</option>
+            <option value="Иваново">Иваново</option>
+            <option value="Магнитогорск">Магнитогорск</option>
+            <option value="Тверь">Тверь</option>
+            <option value="Ставрополь">Ставрополь</option>
+            <option value="Симферополь">Симферополь</option>
+            <option value="Белгород">Белгород</option>
+            <option value="Архангельск">Архангельск</option>
+            <option value="Владимир">Владимир</option>
+            <option value="Севастополь">Севастополь</option>
+            <option value="Сочи">Сочи</option>
+            <option value="Курган">Курган</option>
+            <option value="Смоленск">Смоленск</option>
+            <option value="Калуга">Калуга</option>
+            <option value="Чита">Чита</option>
+            <option value="Орёл">Орёл</option>
+            <option value="Вологда">Вологда</option>
+            <option value="Саранск">Саранск</option>
+            <option value="Якутск">Якутск</option>
+        </select>
+
+        <label>Интервал уведомлений:</label>
+        <select id="interval">
+            <option value="1">1 час</option>
+            <option value="2">2 часа</option>
+            <option value="3">3 часа</option>
+            <option value="4">4 часа</option>
+            <option value="5">5 часов</option>
+            <option value="6">6 часов</option>
+            <option value="8" selected>8 часов</option>
+            <option value="12">12 часов</option>
+            <option value="24">24 часа</option>
+        </select>
+
+        <button onclick="saveSettings()">💾 Сохранить</button>
+    </div>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        
+        function saveSettings() {
+            const data = {
+                action: "set_settings",
+                city: document.getElementById("city").value,
+                interval: document.getElementById("interval").value
+            };
+            
+            tg.sendData(JSON.stringify(data));
+            tg.close();
+        }
+
+        // Инициализация текущих настроек
+        tg.ready();
+        tg.expand();
+    </script>
+</body>
+</html>
